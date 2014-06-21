@@ -1,0 +1,95 @@
+/* Styles taken from csbtemplate */
+
+body {
+
+	font-family: 'Segoe UI', sans-serif;
+
+	}
+
+#header{
+	
+	position: relative;
+    padding: 5px 10px;
+    background-color: #0072C6;
+    background-image: url('img/bg_header.png');
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+
+#branding {
+    position:relative;
+    margin-top: -22px;
+    padding: 0 10px;
+
+    height:40px;
+    overflow:hidden;
+
+        text-align:right;
+
+    background-color: #7FB8E2;
+
+}
+
+#branding h1 {
+    position:absolute;
+    top: 0;
+    left: 0;
+    margin:0;
+    padding: 0 20px 0 20px; 
+    height:40px;
+    line-height:40px;
+    font-size:20px;
+    font-weight:normal;
+    color:#FFF;
+    background-color:#000;
+
+}
+
+#globals {
+    position: relative;
+
+	padding: 0 0 0 20px;
+
+	height:			30px;
+
+    background-color: #0072C6;
+}
+
+#globals a,
+#globals a:link,
+#globals a:visited {
+	display: inline-block;
+	padding: 0 0 0 30px;
+	line-height:30px;
+	
+	color: #FFF;
+	
+    background-image: url('img/bg_globals_a.png');
+    background-position: left center;
+    background-repeat: no-repeat;	
+}
+
+#glb-users {
+	position:absolute;
+	top:0;
+	right:0;
+	
+	height:		30px;
+	min-width: 20%;
+	
+	background-color: #F2F2F2;
+}
+
+.btn {
+
+
+}
+
+.btn:hover {
+
+	/*background-image: url('img/nav-tiles_li_a-hover.png');
+	background-position: right top;
+    background-repeat: no-repeat;
+    background-size:contain;*/
+
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Export Job</title>
+
+    <!-- Start Bootstrap CSS -->
+	<!-- Normalize.css placeholder -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="bootstrap/css/bootstrapValidator.min.css" rel="stylesheet">
+	<!-- End Bootstrap CSS -->
+	
+	<!-- Start Custom CSS -->
+    <link href="css/ejs-custom.css" rel="stylesheet">
+	<link href="css/dete-custom.css" rel="stylesheet">
+	<!-- End Custom CSS -->
+	
+	<!-- Google Analytics Placeholder -->
+
+  </head>
+  
+  <body>
+	
+	<header id="header" class="navbar" role="header">	
+	</header>
+
+	
+	<!-- Start Main Content Section -->
+	<div id="main" class="container-fluid">
+	
+		<form id="exportForm" method="post" role="form">
+
+			<div class="form-group">
+				<label for="jobName">Job Name</label>
+				<input id="jobName" name="jobName" type="text" class="form-control" placeholder="Please provide a job name" autofocus />
+			</div>
+  
+			<div class="form-group">
+				<label for="jobDescription">Job Description</label>
+				<input id="jobDescription" name="jobDescription" type="text" class="form-control" placeholder="Please provide further explanation and/or refer to a ticket number etc" />
+			</div>
+
+			<div class="checkbox">
+			<label>
+				<input id="sensitive" name="sensitive" type="checkbox" checked="checked" />
+					<p id="sensitiveMessage1">
+					<span class="glyphicon glyphicon-flag"></span>&nbsp;Sensitive - this job will only be visible to you.
+					</p>
+					<p id="sensitiveMessage2">
+					<span class="glyphicon glyphicon-flag"></span>&nbsp;Non-Sensitive - this job will be visible to anyone who shares the same centre code or global settings as you.
+					</p>
+			</label>
+			</div>
+  
+			<button id="submit" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span>&nbsp;Submit</button>
+		
+		</form>
+		
+	
+	<div id="window-close-button-container">
+		<button id="close" class="btn btn-default window-close-button" type="button" onclick="window.close()">
+			<span class="glyphicon glyphicon-remove"></span>&nbsp;Close
+		</button>
+	</div>
+	
+			
+	</div>
+	<!-- End Main Content Section -->
+
+	
+    <!-- Start Scripts -->
+    <script src="js/jquery.min.js"></script>
+	
+	<script>
+	// Script to display message for checked / unchecked sensitive flag
+	$(document).ready(function() {
+		$('#sensitiveMessage2').hide(); // Hide sensitiveMessage2 by default
+		$('#sensitive').change( function(){
+			if($(this).is(':checked')) { // Show message when sensitive checkbox checked
+				$('#sensitiveMessage1').show();
+				$('#sensitiveMessage2').hide();
+			} else {	// Show message when sensitive checkbox unchecked
+				$('#sensitiveMessage2').show();
+				$('#sensitiveMessage1').hide();
+			}
+		}); // end change
+	}); // end ready
+	</script>
+	
+	<!-- Start Bootstrap JS -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="bootstrap/js/bootstrapValidator.min.js"></script>
+	
+ 	<script>
+	// Script to validate form on client side
+	$(document).ready(function() {
+		$('#exportForm').bootstrapValidator({
+			fields: {
+				jobName: {
+					validators: {
+						notEmpty: 	{
+								message: 'The job name is required and cannot be empty'
+									}
+								}
+						},
+				jobDescription: {
+					validators: {
+						notEmpty: 	{
+								message: 'A job description is required and cannot be empty'
+									}
+								}
+						}
+					}
+		});
+	});
+	</script>
+	<!-- End Bootstrap JS -->
+	
+	<!-- End Scripts -->
+
+  </body>
+</html>

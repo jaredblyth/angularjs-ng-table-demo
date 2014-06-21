@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ejsApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Search</title>
+
+    <!-- Start Bootstrap CSS -->
+	<!-- Normalize.css placeholder -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">	
+	<!-- End Bootstrap CSS -->
+	
+	<!-- Start AngularJS CSS -->
+	<link rel="stylesheet" href="angular/ng-table.css">
+	<!-- End AngularJS CSS -->
+	
+	<!-- Start Custom CSS -->
+    <link href="css/ejs-custom.css" rel="stylesheet">
+	<link href="css/dete-custom.css" rel="stylesheet">	
+	<!-- End Custom CSS -->
+	
+	<!-- Start Test CSS -->
+	<link href="css/tests-for-development.css" rel="stylesheet">
+	<!-- End Test CSS -->
+	
+	<!-- Google Analytics Placeholder -->
+
+  </head>
+  
+  <body ng-controller="ejsListCtrl">
+	
+	<!-- Start Nav Header -->
+	<div ng-include src="'inc/header.html'"></div>
+	<!-- End Nav Header -->
+	
+	<!-- Start Main Content Section -->
+	<div id="main" class="container-fluid">
+	
+		<!-- Start Sidebar Menu -->
+		<div ng-include src="'inc/menu.html'"></div>
+		<!-- End Sidebar Menu -->
+	
+		<!-- Start Search & Results Section -->
+		<div id="search-results-section" class="col-md-9">
+		
+			<h1>Search</h1>
+
+			<div id="search-box-group" class="input-group">
+				<input id="search-box" type="text" class="form-control" placeholder="Search for emails using address, domain, subject, centre code, user id and/or date" autofocus> <!-- Autofocus draws user in to the search box -->
+					<span class="input-group-btn">
+						<a href="#" onclick="showResults()"> <!-- Test - clicking search will display results - however no actual search function is being performed -->
+							<button id="search-box-button" class="btn btn-default" type="button">
+								<span class="glyphicon glyphicon-search"></span>&nbsp;Search
+							</button>
+						</a>
+					</span>
+			</div>
+			<!-- End Query Builder -->
+		
+		
+			<!-- Start Results Section -->
+			<div id="search-results">
+		
+				<!-- Start Export Buttons -->
+				<div id="export-buttons">
+					<a href="export-job.html" class="popupMeta">
+						<button id="export" class="btn btn-default" type="button">
+							<span class="glyphicon glyphicon-share"></span>&nbsp;Export
+						</button>
+					</a>
+                    
+				</div>
+				<!-- End Export Buttons -->
+		
+
+				<!-- Start AngularJS Table -->
+				<p id="table-info"><strong>
+				{{(tableParams.page() * tableParams.count()) - (tableParams.count() - 1)}} - 
+
+				XX of
+
+				{{tableParams.total()}}
+
+				sorted by: {{tableParams.sorting()|json}}
+   
+				<button id="sort-clear" ng-click="tableParams.sorting({})" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span>&nbsp;Clear sorting</span></button>
+			
+				Filter displayed results:</strong> <input id="filter" ng-model="query">
+				
+				<button id="filter-clear" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span>&nbsp;Clear filter</span></button>
+			
+				</p>
+   
+   
+				<table id="results-table" ng-table="tableParams" class="table ng-table-responsive">
+					<tr ng-repeat="email in $data | filter:query">
+						<td data-title="'Date'" sortable="'sentDate'">
+						{{email.sentDate}}
+						</td>
+						<td data-title="'From'" sortable="'sender'">
+						{{email.sender}}
+						</td>
+						<td data-title="'To'" sortable="'recipients'">
+						{{email.recipients}}
+						</td>
+						<td data-title="'Subject'" sortable="'subject'">
+						{{email.subject}}
+						</td>
+						<td data-title="'Size & Att.'" sortable="">
+						</td>
+						<td data-title="'View'" sortable="">
+						<a href="meta.html?{{email.id}}" class="popupMeta"><span class="glyphicon glyphicon-eye-open"></span></a>
+						<a href="email.html?{{email.id}}" class="popupEmail"><span class="glyphicon glyphicon-envelope"></span></a>
+						</td>
+					</tr>
+				</table>
+				<!-- End AngularJS Table -->
+
+			</div>
+			<!-- End Results Section -->
+		
+		</div>
+		<!-- End Search & Results Section -->
+		
+	</div>
+	<!-- End Main Content Section -->
+
+	
+    <!-- Start Scripts -->
+	<!-- RequireJS placeholder -->
+    <script src="js/jquery.min.js"></script>
+	<script src="js/display-email-text.js"></script>
+    
+	<!-- Start Bootstrap JS -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+	<!-- End Bootstrap JS -->
+	
+	<!-- Start Angular JS -->
+	<script src="angular/angular.min.js"></script>
+	<script src="angular/controllers/search.js"></script>
+	<script src="angular/ng-table.js"></script>
+	<!-- End Angular JS -->
+	
+	<!-- Start Test Scripts -->
+	<script src="js/tests-for-development.js"></script>
+	<!-- End Test Scripts -->
+	
+	<!-- End Scripts -->
+
+  </body>
+</html>
